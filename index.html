@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Custom T-shirt</title>
+</head>
+
+<body>
+<style>
+.leftside{
+        text-align: center;
+    color: #6867AC;
+       
+
+}
+
+body{
+    background-color:#FFBCD1;
+}
+
+input{
+    width: 200px;
+    color: #CE7BB0;
+}
+
+H1{
+    color:#A267AC; 
+    
+}
+select{
+    width: 200px;
+    color: #CE7BB0;
+}
+
+.sample-tshirt:hover{
+    width: 300px;
+}
+
+.submit{
+    color:#A267AC; 
+}
+
+</style>
+
+<section class="leftside" style="display: inline-block; width:50%; height: 100%;">
+    <form action="index.html" id="myForm" name="myForm" enctype="multipart/form-data" method="get">
+<h1>Best Quality Custom T-shirts</h1>
+<p>Order Details:</p>
+<img class="sample-tshirt" width="200px" height="200px" src="custom-tshirt.webp" alt="t-shirt"><br><br>
+<label for="fname">Enter your tagline:</label><br>
+<input  type="text" name="fname" id="fname"><br><br>
+<label for="color">Choose Color:</label><br>
+<select name="colour" id="colour">
+<option value="Black">Black</option>
+<option value="White">White</option>
+<option value="Red">Red</option>
+<option value="Grey">Grey</option>
+<option value="Blue">Blue</option>
+</select><br><br>
+<label for="size">Select Size:</label><br>
+<select id="size" name="size">
+<option value="S">S</option>
+<option value="M">M</option>
+<option value="L">L</option>
+<option value="XL">XL</option>
+<option value="XXL">XXL</option>
+</select><br><br>
+<label for="quantity">Quantity: </label><br>
+<select id="quantity" name="quantity">
+<option value="1">1 for 200 rupees</option>
+<option value="2">2 for 380 rupees</option>
+<option value="3">3 for 540 rupees</option>
+<option value="4">4 for 720 rupees</option>
+</select><br><br>
+<label for="date">Order Date:</label>
+<br>
+<input type="date" id="date" name="date">
+<br><br>
+<label for="payment">Payment Options:</label><br>
+<select id="payment" name="payment">
+<option value="Card">Card</option>
+<option value="UPI">UPI</option>
+<option value="Cash">Cash</option>
+</select><br><br>
+<label for="product">Address:</label><br>
+<input type="text" name="product" id="tagline">
+<br><br>    
+<button class="btn" type="submit" onclick="validateForm(this.form)">Confirm</button>
+</form>
+
+</section>
+
+<section style="position:absolute; right:0px;top:0px; width: 50%; height: 100%;">
+    
+        <img src="rightbg.jpeg" alt="" style="width:auto; height:100%">
+        <div >
+        <video class="samplework" src="t-shirt customizing.mp4" style="overflow: hidden; border-radius: 6%; width:auto; height:70%; position:absolute; bottom:15%; top:15%; left:30%; right: auto; " controls autoplay muted>Browser doesn't support videos</video>
+        </div>
+    
+</section>
+</body>
+
+<script>
+    function validateForm(form) {
+        let x = document.forms["myForm"]["fname"].value;
+        if (x == "") {
+            alert("Tagline must be filled out");
+            return false;
+        }
+        let y = document.forms["myForm"]["product"].value;
+        if (y == "") {
+            alert("Address must be filled out");
+            return false;
+        }
+        else{
+            alert("Thanks for ordering \n Invoice: \n Color: Black \n Qty: 1 \n Order Month: Nov \n Payment: Card    "
+                    
+            )
+            
+        }
+        if (document.forms["myForm"]["payment"].value == "") {
+            alert("Please complete payment procedure");
+            return false;
+        }
+        if (document.forms["myForm"]["type"].value == "") {
+            alert("Please Select type of shirt");
+            return false;
+        }
+        
+        if (document.forms["myForm"]["Number"].value.length >10 || document.forms["myForm"]["Number"].value.length <10 ) {
+            alert("Enter Valid Number");
+            return false;
+        }
+        var doc = new jsPDF();
+        var pret = [];
+        doc.setFontSize(12);
+        doc.text(100, 25, "Invoice");
+        doc.text(15, 55, "Size: " + document.forms["myForm"]["type"].value);
+        doc.text(15, 35, "Name: " + document.forms["myForm"]["fname"].value);
+        doc.text(15, 75, "Payment: " + document.forms["myForm"]["payment"].value);
+        doc.text(15, 65, "Address: " + document.forms["myForm"]["product"].value);
+        doc.text(15, 45, "Product Type: " + document.forms["myForm"]["items"].value);
+        doc.text(15, 95, "Mobile Number: " + document.forms["myForm"]["Number"].value);
+        const d = new Date();
+        doc.text(15, 85, "Date: " + d.getDay() + "-" + d.getMonth() + "-" + d.getFullYear());
+        doc.save("Invoice" + ".pdf");
+    }
+</script>
+</html>
